@@ -5,7 +5,7 @@ Predict clothing depreciation or appreciation using listing data (planned: **eBa
 ## Quick start
 
 ```bash
-cd final_project
+cd mlops
 python3 -m venv .venv
 source .venv/bin/activate   # Windows: .venv\Scripts\activate
 pip install -U pip
@@ -24,14 +24,14 @@ Browse experiments in the UI (separate terminal):
 mlflow ui --backend-store-uri file:./mlruns
 ```
 
-Open http://127.0.0.1:5000 — you should see experiment `clothing-value-prediction` and run `placeholder-baseline`.
+Open http://127.0.0.1:5000 — you should see experiment `item-value-prediction` and run `placeholder-baseline`.
 
 ## Configuration
 
 | Env var | Purpose |
 |--------|---------|
 | `MLFLOW_TRACKING_URI` | Defaults to `file:<repo>/mlruns`. Set to a remote server when you have one. |
-| `MLFLOW_EXPERIMENT_NAME` | Defaults to `clothing-value-prediction`. |
+| `MLFLOW_EXPERIMENT_NAME` | Defaults to `item-value-prediction`. |
 
 ## Where to go next
 
