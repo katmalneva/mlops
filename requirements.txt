@@ -1,10 +1,19 @@
+# Scraper-oriented ingestion
+beautifulsoup4>=4.12
+
 # Experiment tracking & model registry
 mlflow>=2.10,<3
 
 # Data / modeling (use when eBay data pipeline is ready)
 pandas>=2.0
 numpy>=1.24
-scikit-learn>=1.3
+scikit-learn==1.7.2
+
+# API service
+fastapi>=0.115,<1
+httpx>=0.27,<1
+requests>=2.31,<3
+uvicorn>=0.30,<1
 
 # Optional: load API keys from .env later
 python-dotenv>=1.0
