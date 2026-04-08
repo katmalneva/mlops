@@ -86,6 +86,22 @@ This command appends logs to `data/cron.log`.
 - SQLite DB: `data/ebay_historical.db`
 - CSV snapshots: `data/exports/ebay_historical_YYYYMMDD_HHMMSS.csv`
 
+## Build cleaned modeling dataset
+
+From project root, run:
+
+```bash
+python scripts/clean_ebay_exports.py
+```
+
+This scans scraper CSV files, uses `data/brands.csv` to match brand names, extracts `item_type`, normalizes `condition`, and keeps numeric `price`.
+
+Outputs:
+
+- Cleaned CSV: `data/processed/ebay_historical_cleaned.csv`
+- Cleaned Parquet: `data/processed/ebay_historical_cleaned.parquet`
+- Cleaned SQLite DB: `data/processed/ebay_cleaned.db` (table: `ebay_historical_cleaned`)
+
 ## Notes
 
 - This scraper targets eBay sold/completed listing search result pages.
