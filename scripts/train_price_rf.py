@@ -41,7 +41,7 @@ NUM_FEATURES = ["initial_price"]
 FEATURE_COLUMNS = CAT_FEATURES + NUM_FEATURES
 TARGET_COLUMN = "price"
 DEFAULT_DATA_CSV = ROOT / "ebay_historical_clothing_scraper/data/processed/ebay_historical_cleaned.csv"
-DEFAULT_MODEL_OUT = ROOT / "models/ebay_price_rf.joblib"
+DEFAULT_MODEL_OUT = ROOT / "models/model.joblib"
 
 
 def build_pipeline(n_estimators: int, max_depth: int | None, random_state: int) -> Pipeline:
