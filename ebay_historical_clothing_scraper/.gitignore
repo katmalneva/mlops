@@ -2,5 +2,4 @@
 __pycache__/
 *.pyc
 data/ebay_historical.db
-data/exports/
 data/ebay_cookies.txt

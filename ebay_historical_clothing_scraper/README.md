@@ -53,8 +53,6 @@ PYTHONPATH=src python -m ebay_scraper.runner
 PYTHONPATH=src python -m ebay_scraper.schedule_daily
 ```
 
-If `clothing.csv` is present in the project root (columns `Item`, `Brand`, …), each scheduled run uses the next **5** rows (configurable with `CLOTHING_ITEMS_PER_RUN`) as search queries, built as `"{Brand} {Item}"`. Progress is stored in `data/clothing_scrape_cursor.txt` so the next run continues through the file and wraps. Set `EBAY_USE_CLOTHING_CATALOG=0` in `.env` to keep using only `EBAY_QUERIES`.
-
 Default schedule is `02:00` (24-hour local time). Change it in `.env` with:
 
 - `SCHEDULE_HOUR=2`
@@ -78,7 +76,7 @@ crontab -e
 3. Add a daily job (example: 2:00 AM):
 
 ```cron
-0 14 * * * cd /Users/katmalneva/MSDS/MLops/ebay_historical_clothing_scraper && PYTHONPATH=src /opt/anaconda3/envs/MLops/bin/python -m ebay_scraper.runner >> data/cron.log 2>&1
+0 2 * * * cd /Users/katmalneva/MSDS/MLops/mlops/ebay_historical_clothing_scraper && PYTHONPATH=src /opt/anaconda3/envs/MLops/bin/python -m ebay_scraper.runner >> data/cron.log 2>&1
 ```
 
 This command appends logs to `data/cron.log`.
@@ -87,22 +85,6 @@ This command appends logs to `data/cron.log`.
 
 - SQLite DB: `data/ebay_historical.db`
 - CSV snapshots: `data/exports/ebay_historical_YYYYMMDD_HHMMSS.csv`
-
-## Build cleaned modeling dataset
-
-From project root, run:
-
-```bash
-python scripts/clean_ebay_exports.py
-```
-
-This scans scraper CSV files, uses `data/brands.csv` to match brand names, extracts `item_type`, normalizes `condition`, and keeps numeric `price`.
-
-Outputs:
-
-- Cleaned CSV: `data/processed/ebay_historical_cleaned.csv`
-- Cleaned Parquet: `data/processed/ebay_historical_cleaned.parquet`
-- Cleaned SQLite DB: `data/processed/ebay_cleaned.db` (table: `ebay_historical_cleaned`)
 
 ## Notes
 
