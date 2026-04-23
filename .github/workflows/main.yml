@@ -3,7 +3,7 @@ name: Extract features from MongoDB
 on:
   schedule:
     # cron is UTC.  Runs at 0 and 30 minutes past the hour, at 12:00 through 13:00 and 14:59
-    - cron: "0,30 12-13,14 * * *"
+    - cron: "0 12-14 * * *"
   workflow_dispatch: {}
 
 jobs:
@@ -28,4 +28,4 @@ jobs:
           MONGODB_SOURCE_COLL: raw
           MONGODB_TARGET_COLL: parsed
         run: |
-          python scripts/extract_features_from_mongo.py --limit 200 --delay 5
+          python scripts/extract_features_from_mongo.py --limit 150 --delay 5
