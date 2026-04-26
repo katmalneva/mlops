@@ -67,6 +67,18 @@ export VERTEX_AI_TEMPERATURE="0.2"
 If these variables are missing, the service falls back to a local rule-based estimator and returns
 that status in the API response.
 
+Verify the adapter directly before running the UI:
+
+```bash
+python scripts/check_vertex_pricing.py \
+  --description "Patagonia Synchilla fleece pullover in navy, men's medium, lightly worn with no stains or holes." \
+  --retail-price 139
+```
+
+If Vertex AI is configured correctly, the JSON output should show `"provider": "vertex_ai"`. If it
+shows `"provider": "heuristic_fallback"`, either ADC or the required environment variables are still
+missing.
+
 ## API
 
 ### `GET /`

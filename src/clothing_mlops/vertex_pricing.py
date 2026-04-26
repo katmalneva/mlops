@@ -7,6 +7,11 @@ import os
 import re
 from dataclasses import dataclass
 
+from dotenv import load_dotenv
+
+
+load_dotenv()
+
 
 RESPONSE_SCHEMA = {
     "type": "OBJECT",
