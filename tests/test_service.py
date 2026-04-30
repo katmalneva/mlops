@@ -113,6 +113,18 @@ class ServiceTestCase(unittest.TestCase):
         response = self.client.post("/predict", json={"description": "short", "retail_price": 139.0})
         self.assertEqual(response.status_code, 422)
 
+    def test_predict_rejects_zero_or_negative_retail_price(self) -> None:
+        payload = {
+            "description": "Patagonia Synchilla fleece pullover in navy, men's medium, lightly worn.",
+            "retail_price": 0,
+        }
+        response = self.client.post("/predict", json=payload)
+        self.assertEqual(response.status_code, 422)
+
+        payload["retail_price"] = -15.0
+        response = self.client.post("/predict", json=payload)
+        self.assertEqual(response.status_code, 422)
+
 
 if __name__ == "__main__":
     unittest.main()
