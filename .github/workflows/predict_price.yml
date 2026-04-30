@@ -1,0 +1,30 @@
+name: Estimate original_price in MONGO
+
+on:
+  schedule:
+    # cron is UTC.  Runs at 0 and 30 minutes past the hour, at 12:00 through 13:00 and 14:59
+    - cron: "0 3-8 * * *"
+  workflow_dispatch: {}
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - run: pip install -r requirements.txt
+
+      - name: Run original-price estimator
+        env:
+          NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY_CEF }}
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
+          MONGODB_DATABASE: historical
+          MONGODB_PARSED_COLL: parsed
+        run: |
+          python scripts/estimate_original_price_from_mongo.py --limit 150 --delay 5
