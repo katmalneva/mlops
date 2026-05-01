@@ -3,7 +3,7 @@ name: Extract features from MongoDB Using Aidan key
 on:
   schedule:
     # cron is UTC.  Runs at 0 and 30 minutes past the hour, at 12:00 through 13:00 and 14:59
-    - cron: "0 0-3 * * *"
+    - cron: "0 11-14 * * *"
   workflow_dispatch: {}
 
 jobs:
