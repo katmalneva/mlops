@@ -27,4 +27,4 @@ jobs:
           MONGODB_DATABASE: historical
           MONGODB_PARSED_COLL: parsed
         run: |
-          python scripts/estimate_original_price_from_mongo.py --limit 150 --delay 5
+          python scripts/estimate_original_price_from_mongo.py --limit 150 --delay 6
