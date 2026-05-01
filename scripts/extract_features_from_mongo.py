@@ -517,12 +517,22 @@ def main() -> int:
     print(f"Wrote {len(results)} row(s) to {args.output}")
 
     if target_collection and not args.dry_run:
+        # Only persist successfully parsed rows to the parsed/target collection.
+        # Rows where the LLM call or JSON parsing failed are still recorded in
+        # the JSONL output and via mark_processed on the source collection.
+        successful_rows = [r for r in results if r.get("parse_status") == "ok"]
+        skipped = len(results) - len(successful_rows)
+        if skipped:
+            print(
+                f"Skipping {skipped} errored row(s); not inserting into "
+                f"'{database}.{target_collection}'."
+            )
         try:
             written = upsert_to_mongo(
                 uri=mongodb_uri,
                 database=database,
                 collection=target_collection,
-                rows=results,
+                rows=successful_rows,
             )
             print(f"Upserted {written} row(s) into '{database}.{target_collection}'")
         except PyMongoError as exc:
