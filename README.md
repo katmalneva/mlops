@@ -1,6 +1,6 @@
 # Clothing Value Prediction (MLOps)
 
-<img width="600px" height="400px" alt="Screen Recording 2026-05-03 at 8 21 50 PM" src="https://github.com/user-attachments/assets/451d3c57-c5a8-47dc-be8a-82cab37526db" />
+<img width="800" height="519" alt="ScreenRecording2026-05-03at8 21 50PM-ezgif com-video-to-gif-converter" src="https://github.com/user-attachments/assets/6a6a252b-30da-4579-ba19-9c1cd902e963" />
 
 This repo now serves a Vertex AI-ready pricing website for used clothing. The current web app,
 `Spiffy`, accepts a free-text clothing description plus a retail price and returns three resale
